@@ -1,0 +1,42 @@
+{
+  "name": "serverless-indexer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "predo-deploy": "doctl serverless connect prd-search-indexer",
+    "do-deploy": "doctl serverless deploy '../search-indexer' --env '.env.prd'",
+    "predo-deploy-dev": "doctl serverless connect dev-search-indexer",
+    "do-deploy-dev": "doctl serverless deploy '../search-indexer' --env '.env.dev'",
+    "do-list-namespaces": "doctl serverless namespaces list",
+    "format": "prettier --ignore-path .gitignore --write .",
+    "lint": "npm-run-all lint:*",
+    "lint:code": "eslint . --cache",
+    "lint:pretty": "prettier --ignore-path .gitignore --check .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "algoliasearch": "4.24.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.26.8",
+    "@babel/eslint-parser": "7.26.8",
+    "@eslint/js": "9.20.0",
+    "eslint": "9.20.0",
+    "eslint-config-prettier": "9.1.0",
+    "globals": "15.14.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.4.3",
+    "npm-run-all2": "7.0.2",
+    "prettier": "3.5.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "license": "BSD-3-Clause"
+}
